@@ -1,0 +1,123 @@
+//
+// misc
+//
+
+$font_lightest: 300; 
+
+//
+// colors
+//
+
+// neutrals
+
+$text_color_1: #444;
+$text_color_2: #555;
+$text_color_3: #777;
+$text_color_fadded_1: #aaa;
+$text_color_fadded_2: #bbb;
+$text_color_fadded_3: #ccc;
+$text_color_fadded_4: #ddd;
+$text_color_fadded_5: #d5d5d5;
+$text_color_inverse_1: #f0f0f0;
+$text_color_inverse_2: #fff;
+$text_color_inverse_2_alt: #e6fafc;
+
+$background_color_1: #f8f8f8;
+$background_color_1_alt: #efefef;
+$background_color_1_transparent: rgba(248, 248, 248, 0);
+$background_color_1_opacity_0_7: rgba(248, 248, 248, 0.7);
+$background_color_2: #f0f0f0;
+$background_color_3: #f0f3f3;
+$background_color_4: #f5f5f5;
+$background_color_5: #f8f8f8;
+$background_color_6: #fff;
+$background_color_6_alt: #f4fff4;
+$background_color_inverse_1: #ddd;
+$background_color_inverse_1_alt: #e8e8e8;
+$background_color_inverse_2: #ccc;
+$background_color_inverse_2_alt: #cacaca;
+$background_color_inverse_25: #bbb;
+$background_color_inverse_3: #909090;
+$background_color_inverse_3_alt: #9a9a9a;
+$background_color_inverse_35: #a0a0a0;
+$background_color_inverse_35_alt: #aaa;
+$background_color_inverse_4: #404040;
+$background_color_inverse_4_alt: #4a4a4a;
+$background_color_inverse_5: #303030;
+$background_color_inverse_5_alt: #3a3a3a;
+$background_color_inverse_6: #202020;
+$background_color_inverse_6_alt: #2a2a2a;
+$background_color_inverse_7: #000;
+
+$line_color_1: #777;
+$line_color_2: #888;
+$line_color_3: #aaa;
+$line_color_4: #bbb;
+$line_color_5: #ccc;
+$line_color_fadded_1: #d9dbdb;
+$line_color_fadded_2: rgba(0,0,0,0.13);
+$line_color_fadded_3: #e0e0e0;
+
+$shine_color_1: #fff;
+$shine_color_2: #eee;
+$shine_color_3: #ccc;
+$shine_color_inverse_1: #333;
+$shine_color_inverse_2: #888;
+$shine_color_inverse_3: #000;
+$shine_color_inverse_4: #111;
+
+$drop_shadow_color_1: #333;
+$drop_shadow_color_2: rgba(0,0,0,0.3);
+$drop_shadow_color_3: rgba(0,0,0,0.15);
+
+// specifics
+
+$alert_color_1: #da4b3e;
+$alert_color_1_alt: #dd5544;
+$alert_color_background_1: #fff0f0;
+$alert_color_line_1: rgba(255,0,0,0.13);
+$alert_color_shine_1: #500;
+$alert_color_shine_2: #a66;
+
+$success_color_background_1: #38ca4f;
+$success_color_background_2: #e5ffea;
+
+$lightbox_color: rgba(0,0,0,0.3);
+$home_background_color: #0a0a0a;
+
+// real colors
+
+$base_color_1a: #328d99;
+$base_color_1a_fadded: rgba(50, 141, 153, 0.5);
+$base_color_1b: #3799a6;
+$base_color_1c: #3ba5b3;
+
+$base_color_2a: #ff8;
+$base_color_2b: #ff9;
+$base_color_2c: #ffa;
+
+$base_color_3a: #31b045;
+$base_color_3b: #35bd4a;
+$base_color_3c: #38ca4f;
+
+$base_color_4a: #3331b0;
+$base_color_4b: #3735bd;
+$base_color_4c: #3b38ca;
+
+$base_color_5a: #a259a6;
+$base_color_5b: #ae60b3;
+$base_color_5c: #bb67c0;
+
+//
+// zindexes
+//
+
+$z-index-notifications: 70;
+$z-index-tagbar: 60;
+$z-index-lightbox: 50;
+$z-index-menu: 30;
+$z-index-player: 20;
+$z-index-file-input: 10;
+$z-index-tracklist: 10;
+$z-index-basic: 1;
+$z-index-home-image: -5;

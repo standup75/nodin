@@ -1,0 +1,21 @@
+{
+  "name": "nodin",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "0.10.13",
+    "npm":  "1.2.x"
+  },  
+  "dependencies": {
+    "express": "3.4.0",
+    "mongoose": "~3.6.19",
+    "express-mongoose": "~0.1.0",
+    "express-resource-new": "git://github.com/standup75/express-resource-new.git",
+    "express-namespace": "~0.1.1",
+    "connect-mongo": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "lodash": "*",
+    "coffee-script": "*"
+  }
+}
