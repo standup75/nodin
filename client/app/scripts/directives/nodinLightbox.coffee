@@ -51,7 +51,7 @@ app.controller "lightboxCtrl", ($timeout, $scope) ->
 					$input[0].focus()
 	$scope.$on "$routeChangeStart", (event, next, current) -> $scope.close()
 
-app.directive "wlLoginModal", ($http, $location, Session, settings) ->
+app.directive "nodinLoginModal", ($http, $location, Session, settings) ->
 	restrict: "E"
 	scope: true
 	link: (scope, element) ->
@@ -68,7 +68,7 @@ app.directive "wlLoginModal", ($http, $location, Session, settings) ->
 			.error (res) -> scope.showServerError
 				data: res
 
-app.directive "wlSignupModal", ($location, User, Session) ->
+app.directive "nodinSignupModal", ($location, User, Session) ->
 	restrict: "E"
 	scope: true
 	link: (scope, element) ->
@@ -82,7 +82,7 @@ app.directive "wlSignupModal", ($location, User, Session) ->
 				scope.close()
 			, (res) -> scope.showServerError res
 
-app.directive "wlSettings", ($rootScope, User, Session) ->
+app.directive "nodinSettings", ($rootScope, User, Session) ->
 	restrict: "E"
 	scope: true
 	link: (scope, element) ->

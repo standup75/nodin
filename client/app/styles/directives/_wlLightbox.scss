@@ -1,4 +1,4 @@
-.wl-lightbox {
+.nodin-lightbox {
 	position: absolute;
 	z-index: $z-index-lightbox;
 	top: 0;
@@ -156,7 +156,7 @@
 	}
 	.email-template { display: none; }
 
-	wl-progress-bar {
+	nodin-progress-bar {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -166,7 +166,7 @@
 		.progress-bar, .progress { height: 100%; }
 	}
 
-	wl-login-modal  {
+	nodin-login-modal  {
 		.checkbox {
 			float: left;
 		}
@@ -179,7 +179,7 @@
 		}
 	}
 	.modal {
-		wl-share-playlist {
+		nodin-share-playlist {
 			overflow: hidden;
 			.title {
 				text-align: center;

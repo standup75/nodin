@@ -1,4 +1,4 @@
-<div class="wl-lightbox"
+<div class="nodin-lightbox"
 	ng-controller="lightboxCtrl"
 	ng-click="close()"
 	ng-keydown="$event.which === 27 && close()"
@@ -6,7 +6,7 @@
 	<div class="modal" ng-class="openedModal" ng-click="$event.stopPropagation()">
 		<div class="icon-remove" ng-click="close()"></div>
 		<div class="form-error server-error" ng-show="serverError">{{serverError}}</div>
-		<wl-login-modal ng-style="{'display': display.login}">
+		<nodin-login-modal ng-style="{'display': display.login}">
 			<form name="loginForm">
 				<div class="form-error" ng-show="loginForm.username.$invalid && showErrors">Username must be 5 characters minimum</div>
 				<input
@@ -40,8 +40,8 @@
 					<input type="submit" ng-click="submit(loginForm, user)" value="Login" class="button-large cta"/>
 				</div>
 			</form>
-		</wl-login-modal>
-		<wl-signup-modal ng-style="{'display': display.signup}">
+		</nodin-login-modal>
+		<nodin-signup-modal ng-style="{'display': display.signup}">
 			<form name="signupForm">
 				<div class="form-error" ng-show="settingsForm.email.$error.email && showErrors">Invalid email format</div>
 				<input
@@ -73,7 +73,7 @@
 					name="passwordConfirm"
 					ng-model="passwordConfirm"
 					placeholder="Confirm password"
-					wl-same-as="signupForm.password"
+					nodin-same-as="signupForm.password"
 					autocomplete="off"
 					required>
 				<div class="actions">
@@ -81,8 +81,8 @@
 					<input type="submit" ng-click="submit(signupForm, user)" value="Sign me up!" class="button-large cta"/>
 				</div>
 			</form>
-		</wl-signup-modal>
-		<wl-settings ng-style="{'display': display.settings}" ng-click="isChoosePlaylistVisible = false">
+		</nodin-signup-modal>
+		<nodin-settings ng-style="{'display': display.settings}" ng-click="isChoosePlaylistVisible = false">
 			<form name="settingsForm">
 				<div class="form-error" ng-show="settingsForm.email.$error.email && showErrors">Invalid email format</div>
 				<input
@@ -123,7 +123,7 @@
 						name="passwordConfirm"
 						ng-model="passwordConfirm"
 						placeholder="Confirm new password"
-						wl-same-as="settingsForm.newPassword"
+						nodin-same-as="settingsForm.newPassword"
 						autocomplete="off">
 				</div>
 				<div class="actions">
@@ -131,6 +131,6 @@
 					<input type="submit" ng-click="ok()" value="Update" class="button-large cta"/>
 				</div>
 			</form>
-		</wl-settings>
+		</nodin-settings>
 	</div>
 </div>
