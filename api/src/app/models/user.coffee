@@ -9,7 +9,6 @@ userSchema = new mongoose.Schema
 	salt: String
 	role: String
 	hash: String
-	rememberMeToken: String
 
 userSchema.statics.publicFields = [ "email" ]
 

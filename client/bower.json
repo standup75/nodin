@@ -2,6 +2,7 @@
   "name": "assets",
   "version": "0.0.0",
   "dependencies": {
+    "autofill-event": "*",
     "angular": "~1.2.13",
     "angular-route": "~1.2.13",
     "angular-touch": "~1.2.13",

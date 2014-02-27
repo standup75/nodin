@@ -16,11 +16,6 @@ app.controller "lightboxCtrl", ($timeout, $scope) ->
 		$scope.openedModal = name
 		$scope.options[name] = options
 	$scope.submit = (form, formParams) ->
-		if @inputEls
-			# hack from eliasdawson comment on https://github.com/angular/angular.js/issues/1460
-			for inputEl in @inputEls
-				angular.element(inputEl).controller( 'ngModel' ).$setViewValue( inputEl.value );
-
 		@removeServerError()
 		if form.$valid
 			@sendForm formParams
@@ -33,11 +28,16 @@ app.controller "lightboxCtrl", ($timeout, $scope) ->
 			@["#{@name}Form"][@invalidField].$setValidity "server", true
 			@invalidField = null
 	$scope.showServerError = (res) ->
-		if res.data.field
-			$scope.serverError = res.data.error
-			@invalidField = res.data.field
-			@["#{@name}Form"][res.data.field].$setValidity "server", false
-		else 
+		if res?.data
+			if res.data.field
+				$scope.serverError = res.data.error
+				$scope.invalidField = res.data.field
+				$scope["#{@name}Form"][res.data.field].$setValidity "server", false
+			else if res.data.error
+				$scope.serverError = res.data.error
+			else
+				$scope.serverError = "Hmm, something weird happened..."
+		else
 			$scope.serverError = "The server can't be reach. Are you online?"
 	$scope.init = (name) ->
 		@name = name
@@ -55,8 +55,6 @@ app.directive "nodinLoginModal", ($http, $location, Session, settings) ->
 	restrict: "E"
 	scope: true
 	link: (scope, element) ->
-		# needed for the hack in submit()
-		scope.inputEls = element[0].querySelectorAll "[ng-model]"
 		scope.init "login"
 		scope.autofocus element.find("input")
 		scope.sendForm = (user) ->
@@ -72,8 +70,6 @@ app.directive "nodinSignupModal", ($location, User, Session) ->
 	restrict: "E"
 	scope: true
 	link: (scope, element) ->
-		# needed for the hack in submit()
-		scope.inputEls = element[0].querySelectorAll "[ng-model]"
 		scope.init "signup"
 		scope.autofocus element.find("input")
 		scope.sendForm = (user) ->
@@ -82,7 +78,7 @@ app.directive "nodinSignupModal", ($location, User, Session) ->
 				scope.close()
 			, (res) -> scope.showServerError res
 
-app.directive "nodinSettings", ($rootScope, User, Session) ->
+app.directive "nodinSettings", (User, Session) ->
 	restrict: "E"
 	scope: true
 	link: (scope, element) ->

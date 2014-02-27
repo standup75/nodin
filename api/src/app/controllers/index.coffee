@@ -11,13 +11,12 @@ exports.login = (passport) ->
 						error: "Could not log you in"
 						details: err
 				if req.body.rememberme
-					req.session.cookie.maxAge = 20 * 24 * 60 * 60 * 1000000 # 20000 days
+					req.session.cookie.maxAge = 2419200000 # 4 weeks
 				else
-					req.session.cookie.maxAge = null
+					req.session.cookie.expires = false
 				res.status(201).json user: user
 		) req, res, next
 
 exports.logout = (req, res) ->
-	res.clearCookie 'remember_me'
 	req.logout()
 	res.send 200

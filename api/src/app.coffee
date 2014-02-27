@@ -34,13 +34,13 @@ models_dir = __dirname + "/app/models"
 app.configure ->
 	app.set "port", process.env.PORT or 3000
 	app.use express.logger("dev")
-	app.use express.cookieParser()
+	app.use express.cookieParser("badaboum")
+	app.use express.bodyParser()
 	app.use express.session
 		store: new MongoStore
 			url: config.db
 			db: config.session.db
 		secret: config.session.secret
-	app.use express.bodyParser()
 	app.use passport.initialize()
 	app.use passport.session()
 	app.use express.methodOverride()

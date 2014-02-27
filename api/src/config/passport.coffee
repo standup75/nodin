@@ -17,8 +17,10 @@ module.exports = (passport) ->
 			user.isValidPassword password, done
 
 	passport.serializeUser (user, done) ->
-		done null, user
+		console.log "Serializing user: #{JSON.stringify(user)}"
+		done null, user.id
 
-	passport.deserializeUser (user, done) ->
-		User.findById user.id, (err, user) -> done err, user
+	passport.deserializeUser (id, done) ->
+		console.log "Deserializing user: #{id}"
+		User.findById id, (err, user) -> done err, user
 
