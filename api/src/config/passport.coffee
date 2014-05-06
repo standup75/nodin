@@ -16,11 +16,7 @@ module.exports = (passport) ->
 					message: "Unknown email."
 			user.isValidPassword password, done
 
-	passport.serializeUser (user, done) ->
-		console.log "Serializing user: #{JSON.stringify(user)}"
-		done null, user.id
+	passport.serializeUser (user, done) -> done null, user.id
 
-	passport.deserializeUser (id, done) ->
-		console.log "Deserializing user: #{id}"
-		User.findById id, (err, user) -> done err, user
+	passport.deserializeUser (id, done) -> User.findById id, (err, user) -> done err, user
 

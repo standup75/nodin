@@ -44,12 +44,15 @@ module.exports =
 		unless callback?
 			callback = oldValue
 			oldValue = null
-		if value is oldValue
-			callback()
+		if value
+			if value is oldValue
+				callback()
+			else
+				query = {}
+				query[field] = value
+				Model.count query, (err, count) ->
+					err = "This #{field} already exists" if count > 0
+					callback err
 		else
-			query = {}
-			query[field] = value
-			Model.count query, (err, count) ->
-				err = "This #{field} already exists" if count > 0
-				callback err
+			callback "no email specified"
 

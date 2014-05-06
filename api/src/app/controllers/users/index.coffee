@@ -19,14 +19,13 @@ getUser = (user, res, callback) ->
 checkUniquenessOf = (field, value, oldValue, callback) ->
 	utils.checkUniquenessOf User, field, value, oldValue, callback
 
-checkForPasswordUpdate = (req, callback) ->
-	user = req.user
+checkForPasswordUpdate = (req, res, callback) ->
 	newUser = req.body
 	return callback() unless newUser.password and newUser.newPassword
-	req.login {email: user.email, password: newUser.password}, (err) ->
+	req.user.isValidPassword newUser.password, (err, user, info) ->
 		if err
-			res.status(401).json error: "Wrong password"
-		else
+			res.send 500
+		else if user
 			utils.hash newUser.newPassword, (err, salt, hash) ->
 				user.hash = hash
 				user.salt = salt
@@ -35,6 +34,8 @@ checkForPasswordUpdate = (req, callback) ->
 						res.status(401).json error: "Could not update the password"
 					else
 						callback()
+		else
+			res.status(401).json error: "Wrong password"
 
 module.exports =
 	options:
@@ -94,22 +95,27 @@ module.exports =
 
 	update: (req, res) ->
 		user = req.user
-		return res.send(401) unless user and user.id is req.body.id
-		checkForPasswordUpdate req, (err) ->
+		updateOtherFields = (newUser) ->
+			_.assign(user, newUser)
+			user.save (err) ->
+				if err
+					res.send(500)
+				else
+					res.status(200).json user
+		return res.status(401).json({error: "Not logged in or not the right user"}) unless user and user.id is req.params.user
+		checkForPasswordUpdate req, res, (err) ->
 			if err
 				res.status(401).json error: err
 			else
 				newUser = _.pick req.body, User.publicFields
-				checkUniquenessOf "email", newUser.email, user.email, (err) ->
-					if err
-						res.status(401).json error: err
-					else
-						_.assign(user, newUser)
-						user.save (err) ->
-							if err
-								res.send(500)
-							else
-								res.status(200).json user
+				if newUser.email
+					checkUniquenessOf "email", newUser.email, user.email, (err) ->
+						if err
+							res.status(401).json error: err
+						else
+							updateOtherFields newUser
+				else
+					updateOtherFields newUser
 
 	destroy: (req, res) ->
 		if req.params.user
