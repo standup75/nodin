@@ -3,6 +3,7 @@ User = require("../../models/user")
 config = require("../../../config/config")
 session = require("../session")
 utils = require("../../utils/utils")
+sendgrid  = require('sendgrid') process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD
 
 getUser = (user, res, callback) ->
 	User.findOne
@@ -141,3 +142,28 @@ module.exports =
 		user = req.user
 		response = if user then user else { message: "not logged in" }
 		res.status(200).json response
+
+
+	forgot: (req, res) ->
+		userEmail = req.params.user
+		return res.send(401).json({error: "No email address found"}) unless userEmail
+		getUser userEmail, res, (user) ->
+			newPwd = utils.randomString 5
+			utils.hash newPwd, (err, salt, hash) ->
+				user.hash = hash
+				user.salt = salt
+				user.save (err) ->
+					if err
+						res.status(500).json error: "Could not update the password"
+					else
+						sendgrid.send
+							to: user.email,
+							from: "admin@nodin.com",
+							subject: "Your new password",
+							text: "You can now log in with #{newPwd}"
+						, (err, json) ->
+							if err
+								console.log "password for #{user.email} is now #{newPwd}"
+								res.status(500).json error: err
+							else
+								res.send(200)

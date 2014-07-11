@@ -5,7 +5,7 @@ utils = require("../utils/utils")
 userSchema = new mongoose.Schema
 	createdAt: Date
 	updatedAt: Date
-	email: String
+	email: { type: String, unique: true, required: true }
 	salt: String
 	role: String
 	hash: String

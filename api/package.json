@@ -16,6 +16,7 @@
     "passport": "*",
     "passport-local": "*",
     "lodash": "*",
-    "coffee-script": "*"
-  }
+    "coffee-script": "*",
+    "sendgrid": "0.3.0-rc.1.7"
+ }
 }

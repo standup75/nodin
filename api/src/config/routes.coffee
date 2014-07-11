@@ -10,5 +10,6 @@ module.exports = (app, passport) ->
 		app.resource "users", ->
 			@collection.get "count"
 			@collection.get "current"
+			@member.get "forgot"
 		app.options "*", (req, res, next) -> res.send 200
 
