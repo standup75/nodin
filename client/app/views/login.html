@@ -1,0 +1,32 @@
+<form name="loginForm">
+	<div class="form-error" ng-show="loginForm.username.$invalid && showErrors">Username must be 5 characters minimum</div>
+	<input
+		class="modal-input"
+		type="email"
+		ng-minlength="5"
+		ng-model="user.email"
+		name="email"
+		placeholder="Email"
+		autocomplete="off"
+		required>
+	<div class="form-error" ng-show="loginForm.password.$invalid && showErrors">Password must be 5 characters minimum</div>
+	<input
+		class="modal-input"
+		type="password"
+		ng-minlength="5"
+		ng-model="user.password"
+		name="password"
+		placeholder="Password"
+		autocomplete="off"
+		required>
+	<div class="options">
+		<div class="checkbox small">
+			<input type="checkbox" ng-model="user.rememberme"/>
+			<div class="checkbox-checkmark"></div>
+			Remember me
+		</div>
+	</div>
+	<div class="actions">
+		<input type="submit" ng-click="submit(loginForm, user)" value="Login" class="button-large cta"/>
+	</div>
+</form>

@@ -1,62 +1,50 @@
 <!doctype html>
-<html class="no-js" ng-app="nodeinApp" ng-controller="MainCtrl">
+<html class="no-js">
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Nodin</title>
+		<title></title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<!-- build:css(.) styles/vendor.css -->
+		<!-- bower:css -->
+		<!-- endbower -->
+		<!-- endbuild -->
 		<!-- build:css(.tmp) styles/main.css -->
 		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
 	</head>
-	<body ng-cloak>
-		<header>
-			<div class="login-signup-ctas" ng-hide="session.currentUser()">
-				<div class="login-button" ng-click="$broadcast('open-modal', 'login')">Log In</div>
-				<div class="signup-button" ng-click="$broadcast('open-modal', 'signup')">Sign up</div>
-			</div>
-			<div class="logged-in" ng-show="session.currentUser()">
-				<div
-					class="menu"
-					ng-click="isMenuOpen = !isMenuOpen"
-					ng-class="isMenuOpen ? 'opened' : 'closed'">
-					<div class="menu-title">
-						<span ng-bind="session.currentUser().email"></span>
-						<div class="icon-angle-down"></div>
-					</div>
-					<ul>
-						<li ng-click="goToSettings($event)">
-							<span class="icon-gear"></span>
-							Settings
-						</li>
-						<li ng-click="logout()">
-							<span class="icon-signout"></span>
-							Logout
-						</li>
-					</ul>
-				</div>
-			</div>
-		</header>
-		<div class="container" ng-view></div>
-		<div ng-include src="'views/nodinLightboxTemplate.html'"></div>
+	<body ng-app="nodinApp">
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
 
-		<script src="components/angular/angular.js"></script>
-		<script src="components/autofill-event/src/autofill-event.js"></script>
-		<script src="components/angular-resource/angular-resource.js"></script>
-		<script src="components/angular-route/angular-route.js"></script>
-		<script src="components/angular-touch/angular-touch.js"></script>
+		<!-- Add your site or application content here -->
+		<div ng-view=""></div>
+		</div>
 
-		<!-- build:js(.tmp) scripts/scripts.js -->
-		<script src="scripts/settings.js"></script>
-		<script src="scripts/app.js"></script>
-		<script src="scripts/directives/nodinLightbox.js"></script>
-		<script src="scripts/directives/nodinSameAs.js"></script>
-		<script src="scripts/factories/Session.js"></script>
-		<script src="scripts/factories/User.js"></script>
-		<script src="scripts/controllers/main.js"></script>
-		<script src="scripts/controllers/admin.js"></script>
+		<!-- build:js(.) scripts/vendor.js -->
+		<!-- bower:js -->
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/es5-shim/es5-shim.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
+		<script src="bower_components/angular-resource/angular-resource.js"></script>
+		<script src="bower_components/angular-touch/angular-touch.js"></script>
+		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+		<!-- endbower -->
 		<!-- endbuild -->
-	</body>
+
+		<!-- build:js({.tmp,app}) scripts/scripts.js -->
+		<script src="scripts/app.js"></script>
+		<script src="scripts/controllers/main.js"></script>
+		<script src="scripts/controllers/login.js"></script>
+		<script src="scripts/controllers/signup.js"></script>
+		<script src="scripts/factories/session.js"></script>
+		<script src="scripts/factories/User.js"></script>
+		<script src="scripts/directives/nodinSameAs.js"></script>
+		<!-- endbuild -->
+</body>
 </html>

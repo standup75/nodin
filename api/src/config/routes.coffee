@@ -1,12 +1,14 @@
-controllers = require("../app/controllers")
+mainController = require "../app/controllers"
+usersController = require "../app/controllers/users"
 
 module.exports = (app, passport) ->
 	
 	# router
-	app.get "/", controllers.index
+	app.get "/", mainController.index
 	app.namespace "/api/v1", ->
-		app.post "/login", controllers.login(passport)
-		app.get "/logout", controllers.logout
+		app.post "/login", mainController.login(passport)
+		app.get "/logout", mainController.logout
+		app.resource "posts"
 		app.resource "users", ->
 			@collection.get "count"
 			@collection.get "current"

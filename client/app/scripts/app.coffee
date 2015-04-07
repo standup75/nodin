@@ -1,13 +1,18 @@
-"use strict"
+'use strict'
 
-angular.module("nodeinApp").config ($httpProvider, $routeProvider, $sceDelegateProvider) ->
-	$httpProvider.defaults.withCredentials = true;
-	$sceDelegateProvider.resourceUrlWhitelist ["self", "http://wavelinks-assets.s3.amazonaws.com/**"]
-	$routeProvider.when("/",
-		templateUrl: "views/home.html"
-		name: "Home"
-	).when("/admin",
-		templateUrl: "views/admin.html"
-		controller: "AdminCtrl"
-		name: "Admin"
-	).otherwise redirectTo: "/"
+angular.module('nodinApp', [
+  'ngResource'
+  'ngRoute'
+]).config ($httpProvider, $routeProvider) ->
+  $httpProvider.defaults.withCredentials = true;
+  $routeProvider.when('/',
+    templateUrl: 'views/main.html'
+    controller: 'MainCtrl').when('/login',
+    templateUrl: 'views/login.html'
+    controller: 'LoginCtrl').when('/signup',
+    templateUrl: 'views/signup.html'
+    controller: 'SignupCtrl').otherwise redirectTo: '/'
+.constant "settings",
+  baseUrl: "http://localhost:9000"
+  apiUrl: "http://localhost:3000/api/v1"
+

@@ -1,5 +1,5 @@
 "use strict"
-angular.module("nodeinApp").factory "Session", (settings, $http) ->
+angular.module("nodinApp").factory "Session", (settings, $http) ->
 	_currentUser = JSON.parse(localStorage.currentUser) if localStorage.currentUser
 
 	logout = ->

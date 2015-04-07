@@ -1,5 +1,5 @@
 "use strict"
-angular.module("nodeinApp").factory "User", (settings, $resource) ->
+angular.module("nodinApp").factory "User", (settings, $resource) ->
 	escapedBaseUrl = settings.apiUrl.replace /(http:\/\/[^\/]*):/, "$1\\:" # escape the port
 	$resource "#{escapedBaseUrl}/users/:email/:action/:option", { email: "@email", option: "@option" },
 		count: 

@@ -1,26 +1,26 @@
 module.exports = do ->
 	config =
 		global:
-			perPage: 3
-			maxPerPage: 100
 			session:
 				db: "sessions"
-				secret: "n0d1n_sEcret"
+				secret: "n0d1N_sEcret"
 
 		development:
-			origin: "http://localhost:9000"
+			origins: ["http://localhost:9000", "http://localhost:9100"]
 			db: "mongodb://localhost/nodin"
 			app:
-				name: "nodin Dev"
+				name: "nodin dev"
 
 		production:
-			origin: "TBD"
+			origins: ["http://localhost:9000", "http://localhost:9100"]
 			db: process.env.MONGOLAB_URI
 			app:
 				name: "nodin"
 
 	settings = config.global
-	envSettings = config[process.env.NODE_ENV or "development"]
-	settings[key] = envSettings[key] for key of envSettings
+	env = process.env.NODE_ENV or "development"
+	settings.env = env
+	env = "production"  if env is "test"
+	settings[key] = value for key, value of config[env]
 
 	settings

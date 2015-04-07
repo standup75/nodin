@@ -1,0 +1,5 @@
+<div ng-show="user">Welcome {{user.email}}</div>
+<div ng-hide="user">You are logged out</div>
+<a href='#/login' ng-hide="user">Login</a>
+<a href='#/signup' ng-hide="user">Signup</a>
+<a href='#' ng-click="logout()" ng-show="user">Logout</a>

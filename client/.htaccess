@@ -1,5 +1,0 @@
-AuthName "Restricted Area" 
-AuthType Basic 
-AuthUserFile /home1/standupw/www/lovelooks/.htpasswd 
-AuthGroupFile /dev/null 
-require valid-user

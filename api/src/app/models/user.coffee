@@ -1,16 +1,18 @@
-_ = require("lodash")
-mongoose = require("mongoose")
-utils = require("../utils/utils")
+_ = require "lodash"
+mongoose = require "mongoose"
+utils = require "../utils/utils"
+base = require "./base"
 
 userSchema = new mongoose.Schema
 	createdAt: Date
 	updatedAt: Date
-	email: { type: String, unique: true, required: true }
+	email: { type: String, required: true, unique: true }
 	salt: String
 	role: String
 	hash: String
-
-userSchema.statics.publicFields = [ "email" ]
+	name: String
+	url: String
+	needPasswordUpdate: Boolean
 
 userSchema.statics.signup = (email, password, done) ->
 	User = this
@@ -37,11 +39,9 @@ userSchema.pre "save", (next) ->
 		@updatedAt = new Date
 	next()
 
-# based on http://mongoosejs.com/docs/api.html#document_Document-toObject
-userSchema.options.toJSON = {}  unless userSchema.options.toJSON
-userSchema.options.toJSON.transform = (doc, ret, options) ->
-	email: ret.email
-	id: ret._id
+userSchema.statics.publicFields = [ "email", "role", "name", "url", "needPasswordUpdate" ]
+userSchema.statics.names =
+	singular: "user"
+	plural: "users"
 
-User = mongoose.model("User", userSchema)
-module.exports = User
+module.exports = base userSchema

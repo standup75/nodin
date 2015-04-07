@@ -14,6 +14,7 @@ module.exports = (passport) ->
 			unless user
 				return done null, false,
 					message: "Unknown email."
+					field: "email"
 			user.isValidPassword password, done
 
 	passport.serializeUser (user, done) -> done null, user.id

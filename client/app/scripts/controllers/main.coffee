@@ -1,11 +1,6 @@
-"use strict"
-angular.module("nodeinApp").controller "MainCtrl", ($scope, $location, Session) ->
-	timer = null
-	$scope.session = Session
+'use strict'
+angular.module('nodinApp').controller 'MainCtrl', ($scope, $location, Session) ->
+	$scope.user = Session.currentUser()
 	$scope.logout = ->
 		Session.logout()
-		alert "You've been logged out"
 		$location.path "/"
-	$scope.goToSettings = (evt) ->
-		evt.preventDefault()
-		$scope.$broadcast "open-modal", "settings"

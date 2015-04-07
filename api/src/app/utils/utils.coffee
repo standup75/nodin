@@ -23,7 +23,7 @@ module.exports =
 
 	randomString: (len) ->
 		buf = []
-		chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+		chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789"
 		charlen = chars.length
 		i = 0
 

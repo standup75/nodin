@@ -1,0 +1,38 @@
+<form name="signupForm">
+	<div class="form-error" ng-show="settingsForm.email.$error.email && showErrors">Invalid email format</div>
+	<input
+		class="modal-input"
+		type="email"
+		ng-minlength="5"
+		ng-maxlength="300"
+		ng-model="user.email"
+		ng-pattern="/\S+@\S+\.\S+/"
+		name="email"
+		placeholder="Email"
+		autocomplete="off"
+		required>
+	<div class="form-error" ng-show="signupForm.password.$invalid && showErrors">Password must be 5 characters minimum</div>
+	<input
+		class="modal-input"
+		type="password"
+		ng-minlength="5"
+		ng-model="user.password"
+		name="password"
+		placeholder="Password"
+		autocomplete="off"
+		required>
+	<div class="form-error" ng-show="signupForm.passwordConfirm.$error.same && showErrors">This does not match the password you entered</div>
+	<input
+		class="modal-input"
+		type="password"
+		ng-minlength="5"
+		name="passwordConfirm"
+		ng-model="passwordConfirm"
+		placeholder="Confirm password"
+		nodin-same-as="signupForm.password"
+		autocomplete="off"
+		required>
+	<div class="actions">
+		<input type="submit" ng-click="submit(signupForm, user)" value="Sign me up!" class="button-large cta"/>
+	</div>
+</form>
